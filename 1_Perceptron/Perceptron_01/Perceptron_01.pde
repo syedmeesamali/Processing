@@ -24,6 +24,4 @@ class Perceptron {
     int output = sign(sum);
     return output;
   }
-
-
 } //End of class
