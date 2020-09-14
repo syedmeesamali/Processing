@@ -23,7 +23,17 @@ class Perceptron {
     }
     int output = sign(sum);
     return output;
+  } //End of guess function
+  
+  void train(float[] inputs, int target) {
+    int guess = guess(inputs);
+    int error = target - guess;
+    for (int i=0; i<weights.length; i++) {
+      weights[i] +=  error * inputs[i];
+    }
   }
+  
+  
 } //End of class
 
 //------------------END OF THE PERCEPTRON DEFINITION
@@ -32,7 +42,7 @@ Perceptron p;
 Point[] points = new Point[100];    //Array of 100 points
 
 void setup() {
-  size(500, 300);
+  size(400, 400);
   p = new Perceptron();
   for (int i = 0; i < points.length; i++ ) {
     points[i] = new Point();
@@ -45,6 +55,8 @@ void setup() {
 
 void draw() {
   background(255);
+  stroke(0);
+  line(0, 0, width, height);
   for (Point p : points) {
     p.show();
   }
