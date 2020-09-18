@@ -67,7 +67,7 @@ void draw() {
   {
     float[] inputs = {pt.x, pt.y};
     int target = pt.label;
-    brain.train(inputs, target);
+    //brain.train(inputs, target);
     int guess = brain.guess(inputs);
     if (guess == target) {
         fill(0, 255, 0);
@@ -76,7 +76,14 @@ void draw() {
     }
       noStroke();
       ellipse(pt.x, pt.y, 16, 16);
-    
     }
-    
 } //End of draw
+
+void mousePressed() {
+    for (Point pt : points) 
+    {
+    float[] inputs = {pt.x, pt.y};
+    int target = pt.label;
+    brain.train(inputs, target);
+    }
+}
