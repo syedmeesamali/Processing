@@ -41,6 +41,8 @@ class Perceptron {
 
 Perceptron brain;
 Point[] points = new Point[100];    //Array of 100 points
+int trainingIndex = 0;
+
 
 void setup() {
   size(700, 700);
@@ -67,7 +69,7 @@ void draw() {
   {
     float[] inputs = {pt.x, pt.y};
     int target = pt.label;
-    //brain.train(inputs, target);
+    brain.train(inputs, target);
     int guess = brain.guess(inputs);
     if (guess == target) {
         fill(0, 255, 0);
@@ -77,13 +79,23 @@ void draw() {
       noStroke();
       ellipse(pt.x, pt.y, 16, 16);
     }
+    Point training = points[trainingIndex]; 
+    float[] inputs = {training.x, training.y};
+    int target = training.label;
+    brain.train(inputs, target);
+    trainingIndex++;
+    if(trainingIndex == points.length) {
+        trainingIndex = 0;
+    }
+    
+    
 } //End of draw
 
 void mousePressed() {
     for (Point pt : points) 
     {
-    float[] inputs = {pt.x, pt.y};
-    int target = pt.label;
-    brain.train(inputs, target);
+     /* float[] inputs = {pt.x, pt.y};
+      int target = pt.label;
+      brain.train(inputs, target); */
     }
 }
