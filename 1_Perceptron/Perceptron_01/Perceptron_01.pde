@@ -7,6 +7,17 @@ int sign(float n) {
   }
 }
 
+int feedforward(float[] inputs)
+{
+  float sum = 0;
+  for (int i=0;   i < weights.length; i++)
+  {
+    sum += inputs[i] * weights[i];
+  }
+    return activate(sum);
+}
+
+//Main perceptron class to visualize the simple most perceptron
 class Perceptron {
   float[] weights = new float[2];
   //Constructor
